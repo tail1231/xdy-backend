@@ -1,6 +1,7 @@
 // 加载环境变量
 require('dotenv').config();
 import Koa from 'koa';
+import cors from '@koa/cors';
 import bodyParser from 'koa-bodyparser';
 import orderRoutes from './routes/orderRoutes';
 import commonRoutes from './routes/commonRoutes';
@@ -11,7 +12,7 @@ const app = new Koa();
 
 // 使用bodyparser中间件
 app.use(bodyParser());
-
+app.use(cors());
 // 使用订单路由
 app.use(commonRoutes.routes()).use(commonRoutes.allowedMethods());
 app.use(orderRoutes.routes()).use(orderRoutes.allowedMethods());
